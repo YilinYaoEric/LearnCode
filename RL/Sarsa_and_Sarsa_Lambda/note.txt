@@ -1,0 +1,24 @@
+Sarsa 是一个on policy啊
+他相对保守一点
+Q(s, a) ← Q(s, a) + a[r + gamma * Q(s’, a’) - Q(s, a)]
+s ← s’, a ← a’
+
+Sarsa lambda 就是不光看的更远了，也更新来时的路
+就是经历的都记录上，记录随着时间变淡，这个权重在收到reward的时候会用到
+说白了就是通过路过节点的时间和获取奖励的时间来计算奖励和路过该节点的相关性
+
+这个经历的记录叫 E
+
+Sarsa lambda 会有个问题就是如果是重复一个动作太多次了，获得一个奖励，就会一下加太多，所以说记录的权重有个封顶
+
+更新sudo code如下：
+while S is not terminal:
+    update = R + gamma * Q(S', A') - Q(S, A)
+    E(S, A) += 1
+    for all S, A:
+        Q(S, A) += alpha * update * E(S, A)
+        E(S, A) *= gamma * lambda
+    S, A = S', A'
+
+
+记得如果是terminal那就只取R的值

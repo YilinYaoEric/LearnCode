@@ -6,3 +6,6 @@ predict = 现在的State对应的Action在表格中的值
 target = 这一个action的reward + GAMMA(控制前瞻性) * Action结束的State里的预估最高Action值
 predict += ALPHA(学习率) * (target - predict)
 
+写这么几个function啊：
+make_decision(state, q_table) -> Action
+env_feedback(action, state) -> new_state, reward
