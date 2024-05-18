@@ -1,0 +1,8 @@
+q_learning 算法
+说白了就是：用一个matrix去记录所有位置的一个预估值。每次从一个位置走到另外一个位置的时候，更新这个预估值
+
+更新的equation：
+predict = 现在的State对应的Action在表格中的值
+target = 这一个action的reward + GAMMA(控制前瞻性) * Action结束的State里的预估最高Action值
+predict += ALPHA(学习率) * (target - predict)
+
